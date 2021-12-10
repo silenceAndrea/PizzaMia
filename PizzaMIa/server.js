@@ -29,26 +29,30 @@ app.get('/', function (req, res) {
     res.render('pages/index');
 });
 
-// departments page
-app.get('/departments', async function (req, res) {
-    // Find all departments
+// creaPizza page
+app.get('/creaPizza', async function (req, res) {
+    // Find all farine
     const farine = await Farina.find({});
     console.log(farine);
+
+    // Find all formati
     const formati = await Formato.find({});
     console.log(formati);
+
+    // Find all ingredients
     const ingredients = await Ingredient.find({});
     console.log(ingredients);
 
-    res.render('pages/departments', { farine,formati,ingredients });
+    res.render('pages/creaPizza', { farine,formati,ingredients });
 
 });
 
-// employees page
-app.get('/employees', async function (req, res) {
+// cercaPizzeria page
+app.get('/cercaPizzeria', async function (req, res) {
     // Find all employees
-    const employees = await Formato.find({});
-    console.log(employees);
-    res.render('pages/employees', { employees });
+    const pizzerie = await Pizzeria.find({});
+    console.log(pizzerie);
+    res.render('pages/cercaPizzeria', { pizzerie });
 });
 
 
