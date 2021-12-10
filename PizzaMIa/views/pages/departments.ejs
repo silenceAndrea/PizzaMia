@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+</head>
+
+<body class="container">
+
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main>
+        <div class="jumbotron">
+            <div class="col-sm-8">
+                <div class="well">
+                    <h4>Farine</h4>
+                    <%- include("tableFarine", {farine}); %>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="well">
+                    <h3>Formati</h3>
+                    <%- include("tableFormati", {formati}); %>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="well">
+                    <h3>Ingredienti</h3>
+                    <%- include("checkIngredients", {ingredients}); %>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+
+</body>
+
+</html>
