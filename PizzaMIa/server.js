@@ -22,6 +22,9 @@ const Formato = mongoose.model('formati', FormatoSchema);
 const IngredientSchema = new mongoose.Schema({ "_id": String, "value": String });
 const Ingredient = mongoose.model('ingredient', FormatoSchema);
 
+const PizzeriaSchema = new mongoose.Schema({ "_id": String, "name": String ,"city":String,"state":String,"address":String,"number":String});
+const Pizzeria = mongoose.model('pizzeria', PizzeriaSchema);
+
 
 
 // index page
