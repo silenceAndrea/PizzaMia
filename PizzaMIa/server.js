@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 
 mongoose.connect("mongodb+srv://ingegneria:IngegneriaInformatica@ingegneriainformatica.vielk.mongodb.net/IngegneriaInformatica?retryWrites=true&w=majority", {
     useNewUrlParser: true
@@ -8,6 +9,8 @@ mongoose.connect("mongodb+srv://ingegneria:IngegneriaInformatica@ingegneriainfor
 
 
 const app = express();
+
+app.use(bodyParser.urlencoded({extended:false}));
 
 // set the view engine to ejs
 app.set("view engine", "ejs");
@@ -51,12 +54,22 @@ app.get('/creaPizza', async function (req, res) {
 });
 
 // cercaPizzeria page
-app.get('/cercaPizzeria', async function (req, res) {
-    // Find all employees
+async function getPizzeria(req, res) {
+
     const pizzerie = await Pizzeria.find({});
     console.log(pizzerie);
     res.render('pages/cercaPizzeria', { pizzerie });
-});
+
+}
+async function postPizzeria(req, res) {
+
+    var ricerca = req.body.ricerca;
+    const pizzerie = await Pizzeria.find({ $or: [ {city:{$regex:ricerca, $options : 'i'}},{name:{$regex:ricerca, $options : 'i'}},{state:{$regex:ricerca, $options : 'i'}},{address:{$regex:ricerca, $options :'i'}}]});
+    console.log(pizzerie);
+    res.render('pages/cercaPizzeria', { pizzerie });
+}
+app.route('/cercaPizzeria').get(getPizzeria).post(postPizzeria);
+
 
 
 

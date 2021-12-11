@@ -11,16 +11,18 @@
         <%- include('../partials/header'); %>
     </header>
 
-    <main>
-        <div class="jumbotron">
-            <div class="col-sm-8">
-                <div class="well">
-                    <h3>Pizzerie</h3>
-                    <%- include("tablePizzerie", {pizzerie}); %>
-                </div>
-            </div>
-        </div>
-    </main>
+
+    <form class="form-group" action="/cercaPizzeria" method="POST">
+        <label for="ricerca">ricerca</label>
+        <input type="text" class="form-control" name="ricerca" id="ricerca" >
+        <button type="submit" class="btn btn-primary" >submit</button>
+    </form>
+    <div class="container">
+            <h3>Pizzerie</h3>
+            <%- include("tablePizzerie", {pizzerie}); %>
+        
+    </div>
+
 
     <footer>
         <%- include('../partials/footer'); %>
