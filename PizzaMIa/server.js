@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
+
 mongoose.connect("mongodb+srv://ingegneria:IngegneriaInformatica@ingegneriainformatica.vielk.mongodb.net/IngegneriaInformatica?retryWrites=true&w=majority", {
     useNewUrlParser: true
 });
@@ -55,10 +56,10 @@ app.get('/creaPizza', async function (req, res) {
 
 // cercaPizzeria page
 async function getPizzeria(req, res) {
-
+    var ricerca ="";
     const pizzerie = await Pizzeria.find({});
     console.log(pizzerie);
-    res.render('pages/cercaPizzeria', { pizzerie });
+    res.render('pages/cercaPizzeria', { pizzerie ,ricerca});
 
 }
 async function postPizzeria(req, res) {
@@ -66,7 +67,7 @@ async function postPizzeria(req, res) {
     var ricerca = req.body.ricerca;
     const pizzerie = await Pizzeria.find({ $or: [ {city:{$regex:ricerca, $options : 'i'}},{name:{$regex:ricerca, $options : 'i'}},{state:{$regex:ricerca, $options : 'i'}},{address:{$regex:ricerca, $options :'i'}}]});
     console.log(pizzerie);
-    res.render('pages/cercaPizzeria', { pizzerie });
+    res.render('pages/cercaPizzeria', { pizzerie ,ricerca});
 }
 app.route('/cercaPizzeria').get(getPizzeria).post(postPizzeria);
 

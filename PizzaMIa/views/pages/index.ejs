@@ -1,8 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 
 <head>
     <%- include('../partials/head'); %>
+    body{
+        align-items: center;
+        justify-content: center;
+        margin: auto auto;
+        height: 100vh;
+        display: flex;
+    }
+    
+        </style>
 </head>
 
 <body>
@@ -11,17 +20,27 @@
         <%- include('../partials/header'); %>
     </header>
 
-    <main style="background-color:greenyellow; height:100%">
-        <div class="text-center" content="height=device-height" style="background-color:#ff7f50;">
-            <h1><strong>PizzaMia</strong></h1>
-            <a name="" id="" class="btn btn-primary" href="/creaPizza" role="button" style="margin: 15px;">Crea Pizza</a><br>
-            <a name="" id="" class="btn btn-primary" href="/cercaPizzeria" role="button"style="margin: 15px;margin-bottom:30%">Cerca Pizzeria</a>
-        </div>
-    </main>
 
-    <footer class="footer fixed-bottom">
-        <%- include('../partials/footer'); %>
-    </footer>
+
+    <div class="text-center">
+        <h1><strong>PizzaMia</strong></h1>
+        <a name="" id="" class="btn btn-primary" href="/creaPizza" role="button" style="margin: 15px;">Crea
+            Pizza</a><br>
+        <a name="" id="" class="btn btn-primary" href="/cercaPizzeria" role="button" style="margin: 15px">Cerca
+            Pizzeria</a>
+
+    </div>
+
+
+
+
+
+
+
+    <%- include('../partials/footer'); %>
+
+
+
 
 </body>
 
