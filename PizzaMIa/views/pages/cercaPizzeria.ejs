@@ -21,8 +21,7 @@
         <div class="container">
         <form class="form-group" action="/cercaPizzeria" id="form-ricerca" method="POST">
             <label for="ricerca">ricerca</label>
-            <input type="text" class="form-control" name="ricerca" value="<%-ricerca %>" id="ricerca">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <input type="text" class="form-control" name="ricerca" value="<%-ricerca %>" id="ricerca" onfocus="let value = this.value; this.value = null; this.value=value" onkeyup="research()">
         </form><br>
         <h3>Pizzerie</h3>
         <%- include("tablePizzerie", {pizzerie}); %>
