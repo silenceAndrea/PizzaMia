@@ -12,6 +12,7 @@ mongoose.connect("mongodb+srv://ingegneria:IngegneriaInformatica@ingegneriainfor
 const app = express();
 
 app.use(bodyParser.urlencoded({extended:false}));
+app.use( express.static( "public" ) );
 
 // set the view engine to ejs
 app.set("view engine", "ejs");

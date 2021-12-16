@@ -3,6 +3,9 @@
 
 <head>
     <%- include('../partials/head'); %>
+
+        .containerdiv { float: left; position: relative; }
+        .cornerimage { position: absolute; top: 0; right: 0; }
         </style>
 </head>
 
@@ -13,23 +16,29 @@
     </header>
 
     <main>
-        <div class="jumbotron ml-auto">
-            <div class="col-sm-8">
-                <div class="well">
-                    <h4>Farine</h4>
-                    <%- include("tableFarine", {farine}); %>
+        <div class="jumbotron ml-auto ">
+            <div class="containerdiv">
+                <img border="0" src="mozzarella.png" alt="" width="100" height="100">
+                <img class="cornerimage" border="0" src="pomodori.png" alt="" width="40" height="40">
+            </div><br>
+            <div>
+                <div class="col-sm-8">
+                    <div class="well">
+                        <h4>Farine</h4>
+                        <%- include("tableFarine", {farine}); %>
+                    </div>
                 </div>
-            </div>
-            <div class="col-sm-8">
-                <div class="well">
-                    <h3>Formati</h3>
-                    <%- include("tableFormati", {formati}); %>
+                <div class="col-sm-8">
+                    <div class="well">
+                        <h3>Formati</h3>
+                        <%- include("tableFormati", {formati}); %>
+                    </div>
                 </div>
-            </div>
-            <div class="col-sm-8">
-                <div class="well">
-                    <h3>Ingredienti</h3>
-                    <%- include("checkIngredients", {ingredients}); %>
+                <div class="col-sm-8">
+                    <div class="well">
+                        <h3>Ingredienti</h3>
+                        <%- include("checkIngredients", {ingredients}); %>
+                    </div>
                 </div>
             </div>
         </div>

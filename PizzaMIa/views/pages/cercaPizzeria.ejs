@@ -3,6 +3,7 @@
 
 <head>
     <%- include('../partials/head'); %>
+    
     </style>
 </head>
 
@@ -16,8 +17,8 @@
 
     
 
-
-    <div class="container">
+    <main>
+        <div class="container">
         <form class="form-group" action="/cercaPizzeria" id="form-ricerca" method="POST">
             <label for="ricerca">ricerca</label>
             <input type="text" class="form-control" name="ricerca" value="<%-ricerca %>" id="ricerca">
@@ -27,6 +28,9 @@
         <%- include("tablePizzerie", {pizzerie}); %>
 
     </div>
+
+    </main>
+    
 
 
     <footer>
