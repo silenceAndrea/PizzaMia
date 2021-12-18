@@ -3,91 +3,101 @@
 
 <head>
     <%- include('../partials/head'); %>
-        <style>
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-                font-family: "Montserrat", sans-serif;
-            }
 
-            .wrapper {
-                width: 1000px;
-                margin: 10px auto 0;
-            }
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Montserrat", sans-serif;
+        }
 
-            .container {
-                display: flex;
-                flex-wrap: wrap;
-            }
+        .wrapper {
+        width: 1000px;
+        margin: 10px auto 0;
+        }
 
-            .container .option_item {
-                display: block;
-                position: relative;
-                width: 175px;
-                height: 175px;
-                margin: 10px;
-            }
+        .container {
+        display: flex;
+        flex-wrap: wrap;
+        }
 
-            .container .option_item .checkbox {
-                position: absolute;
-                top: 0;
-                left: 0;
-                z-index: 1;
-                opacity: 0;
-            }
+        .container .img_item {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        position: relative;
+        width: 400px;
+        height: 400px;
+        margin: 20px;
+        }
 
-            .option_item .option_inner {
-                width: 100%;
-                height: 100%;
-                background: #fff;
-                border-radius: 5px;
-                text-align: center;
-                padding: 58px 40px;
-                cursor: pointer;
-                color: #585c68;
-                display: block;
-                border: 5px solid transparent;
-                position: relative;
-            }
+        .container .option_item {
+        display: block;
+        position: relative;
+        width: 175px;
+        height: 175px;
+        margin: 10px;
+        }
 
-            .option_item .option_inner .name {
-                user-select: none;
-            }
+        .container .option_item .checkbox {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        opacity: 0;
+        }
 
-            .option_item .checkbox:checked~.option_inner {
-                border-color: #3b5999;
-                color: #3b5999;
-            }
+        .option_item .option_inner {
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        border-radius: 5px;
+        text-align: center;
+        padding: 58px 40px;
+        cursor: pointer;
+        color: #585c68;
+        display: block;
+        border: 5px solid transparent;
+        position: relative;
+        }
 
-            .option_item .option_inner .tickmark {
-                position: absolute;
-                top: -1px;
-                left: -1px;
-                border: 20px solid;
-                border-color: #000 transparent transparent #000;
-                display: none;
-            }
+        .option_item .option_inner .name {
+        user-select: none;
+        }
 
-            .option_item .option_inner .tickmark:before {
-                content: "";
-                position: absolute;
-                top: -18px;
-                left: -18px;
-                width: 15px;
-                height: 5px;
-                border: 3px solid;
-                border-color: transparent transparent #fff #fff;
-                transform: rotate(-45deg);
-            }
+        .option_item .checkbox:checked~.option_inner {
+        border-color: #3b5999;
+        color: #3b5999;
+        }
 
-            .option_item .checkbox:checked~.option_inner .tickmark {
-                display: block;
-            }
+        .option_item .option_inner .tickmark {
+        position: absolute;
+        top: -1px;
+        left: -1px;
+        border: 20px solid;
+        border-color: #000 transparent transparent #000;
+        display: none;
+        }
 
-            .option_item .option_inner .tickmark {
-                border-color: #3b5999 transparent transparent #3b5999;
-            }
+        .option_item .option_inner .tickmark:before {
+        content: "";
+        position: absolute;
+        top: -18px;
+        left: -18px;
+        width: 15px;
+        height: 5px;
+        border: 3px solid;
+        border-color: transparent transparent #fff #fff;
+        transform: rotate(-45deg);
+        }
+
+        .option_item .checkbox:checked~.option_inner .tickmark {
+        display: block;
+        }
+
+        .option_item .option_inner .tickmark {
+        border-color: #3b5999 transparent transparent #3b5999;
+        }
         </style>
 </head>
 
@@ -99,18 +109,78 @@
 
     <main>
         <div class="jumbotron ml-auto ">
-            <div>
-                <div class="col-sm-8">
-                    <div class="well">
-                        <h3>Farine</h3>
+
+            <div class="wrapper ml-auto">
+                <div class="container text-center">
+
+                    <label class="img_item">
+                        <% ingredients.forEach(ingredient=> { %>
+                            <img src="<%= ingredient.value %>.png" style="position: absolute;
+                        display:none;" id="<%= ingredient._id %>_image" class="img-fluid" border=0>
+                            </img>
+
+
+                            <% }) %>
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-sm-8">
+                <div class="well">
+                    <h3>Farine</h3>
+                    <div class="wrapper">
+
+                        <div class="container">
+                            <% farine.forEach(farina=> { %>
+                                <label class="option_item">
+                                    <input type="radio" class="checkbox" name="farine">
+                                    <div class="option_inner" for="inlineRadio1" b>
+                                        <%= farina.type %>
+                                            <div class="tickmark"></div>
+                                    </div>
+                                </label>
+                                <% }) %>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="well">
+                    <h3>Formati</h3>
+                    <div class="wrapper">
+
+                        <div class="container">
+                            <% formati.forEach(formato=> { %>
+                                <label class="option_item">
+                                    <input type="radio" class="checkbox" name="formati">
+                                    <div class="option_inner" for="<%= formato._id %>">
+                                        <%= formato.value %>
+                                            <div class="tickmark"></div>
+                                    </div>
+                                </label>
+                                <% }) %>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="well3">
+                    <div class="wrapper">
+                        <h3>Ingredienti</h3>
                         <div class="wrapper">
 
                             <div class="container">
-                                <% farine.forEach(farina=> { %>
+                                <% ingredients.forEach(ingredient=> { %>
                                     <label class="option_item">
-                                        <input type="radio" class="checkbox" name="farine">
-                                        <div class="option_inner" for="inlineRadio1" b>
-                                            <%= farina.type %>
+                                        <input type="checkbox" class="checkbox" name="ingredient"
+                                            value="<%= ingredient.value %>" id="<%= ingredient._id %>"
+                                            onclick="show(this.id)">
+                                        <div class="option_inner" for="<%= ingredient._id %>">
+                                            <img src="<%= ingredient.value %>.png" class="img-fluid">
+                                            <%= ingredient.value %></img>
+
                                                 <div class="tickmark"></div>
                                         </div>
                                     </label>
@@ -118,52 +188,10 @@
                             </div>
                         </div>
                         <br>
-                    </div>
-                </div>
-                <div class="col-sm-8">
-                    <div class="well">
-                        <h3>Formati</h3>
-                        <div class="wrapper">
-
-                            <div class="container">
-                                <% formati.forEach(formato=> { %>
-                                    <label class="option_item">
-                                        <input type="radio" class="checkbox" name= "formati">
-                                        <div class="option_inner" for="<%= formato._id %>">
-                                            <%= formato.value %>
-                                                <div class="tickmark"></div>
-                                        </div>
-                                    </label>
-                                    <% }) %>
-                            </div>
-                        </div>
-                        <br>
-                    </div>
-                </div>
-                <div class="col-sm-8">
-                    <div class="well3">
-                        <div class="wrapper">
-                            <h3>Ingredienti</h3>
-                            <div class="wrapper">
-
-                                <div class="container">
-                                    <% ingredients.forEach(ingredient=> { %>
-                                        <label class="option_item" >
-                                            <input type="checkbox" class="checkbox">
-                                            <div class="option_inner" for="<%= ingredient._id %>" >
-                                                <img src="<%= ingredient.value %>.png" class="img-fluid"  ><%= ingredient.value %></img>
-                                                
-                                                    <div class="tickmark"></div>
-                                            </div>
-                                        </label>
-                                        <% }) %>
-                                </div>
-                            </div>
-                            <br>
-                        </div>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
 
     </main>
@@ -175,3 +203,14 @@
 </body>
 
 </html>
+<script>
+    function show(id) {
+        var checkBox = document.getElementById(id);
+        var image = document.getElementById(id + "_image");
+        if (checkBox.checked == true) {
+            image.style.display = "block";
+        } else {
+            image.style.display = "none";
+        }
+    }
+</script>
