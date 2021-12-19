@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
 
+
 mongoose.connect("mongodb+srv://ingegneria:IngegneriaInformatica@ingegneriainformatica.vielk.mongodb.net/IngegneriaInformatica?retryWrites=true&w=majority", {
     useNewUrlParser: true
 });
@@ -75,5 +76,6 @@ app.route('/cercaPizzeria').get(getPizzeria).post(postPizzeria);
 
 
 
-app.listen(8080);
+var server = app.listen(8080);
+module.exports = server;
 console.log('Server is listening on port 8080');
