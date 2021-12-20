@@ -55,6 +55,17 @@ app.get('/creaPizza', async function (req, res) {
     res.render('pages/creaPizza', { farine,formati,ingredients });
 
 });
+app.get('/api/farina', (request, response) => {
+
+    Farina.find({},(error, result) => {
+        if (error) {
+            console.log(error);
+        }
+
+        response.send(result.json);
+    })
+
+})
 
 // cercaPizzeria page
 async function getPizzeria(req, res) {

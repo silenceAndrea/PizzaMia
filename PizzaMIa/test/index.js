@@ -3,24 +3,19 @@ var request = require('supertest');
 var app = require('../server.js');
 
 
-test('TEST1: correct pizzeria added', function (assert) {
+test('TEST1: Correct farina returned', function (assert) {
     request(app)
-        .post('/api/pizzeria')
-        .send({
-            "name": "nuovaPizzeria", "city": "Roma", "state": "Italia",
-            "address": "via francesco d'amico",
-            "number": "3355791520"
-        })
-        .end((err, res) => {
-
-            if (err) {
-                reject(new Error('An error occured with the pizzeria Adding API, err: ' + err));
-            }else{
-                assert.error(err, 'No error');
-                assert.isEqual("Added Successfully", res.body, "Pizzeria added correctly");
+        .get('/api/farina')
+        .end(function (err, res) {
+            console.log(res.body.length);
+            var NumOfFarine = res.body.length;
+            var result = false;
+            if (NumOfFarine == 0) {
+                result = true;
             }
 
-            
+            assert.error(err, 'No error');
+            assert.notEqual(true, result, 'Farine retrieved Correctly');
             assert.end();
         });
 });
