@@ -1,6 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const swaggerUI = require("swagger-ui-express");
+const swaggerJSDoc = require('swagger-jsdoc');
 
 
 
@@ -37,7 +39,15 @@ const Pizzeria = mongoose.model('pizzeria', PizzeriaSchema);
 app.get('/', function (req, res) {
     res.render('pages/index');
 });
-
+/**
+ * @swagger
+ * /creaPizza:
+ *   get:
+ *     description: render a page that contain and take data from farine,formati,ingredients 
+ *     responses:
+ *       200:
+ *         description: page rendered successfully
+ */
 // creaPizza page
 app.get('/creaPizza', async function (req, res) {
     // Find all farine
@@ -55,6 +65,16 @@ app.get('/creaPizza', async function (req, res) {
     res.render('pages/creaPizza', { farine,formati,ingredients });
 
 });
+
+/**
+ * @swagger
+ * /api/farina:
+ *   get:
+ *     description: Get all the farina
+ *     responses:
+ *       200:
+ *         description: Returns the requested farine
+ */
 app.get('/api/farina', (request, response) => {
 
     Farina.find({},(error, result) => {
@@ -82,8 +102,45 @@ async function postPizzeria(req, res) {
     console.log(pizzerie);
     res.render('pages/cercaPizzeria', { pizzerie ,ricerca});
 }
-app.route('/cercaPizzeria').get(getPizzeria).post(postPizzeria);
+/**
+ * @swagger
+ * /cercaPizzeria:
+ *   get:
+ *     description: Get all the pizzeria
+ *     responses:
+ *       200:
+ *         description: success
+ */
+app.route('/cercaPizzeria').get(getPizzeria);
+/** 
+ * @swagger 
+ * /cercaPizzeria: 
+ *   post: 
+ *     description: ricerca pizzerie in base da una stringa
+ *     parameters: 
+ *     - name: researchBar 
+ *       description: Ricerca pizzeria e rendering della pagina
+ *       in: formData 
+ *       required: true 
+ *       type: String 
+ *     responses:  
+ *       201: 
+ *         description: page rendered  
+ *   
+ */  
+app.route('/cercaPizzeria').post(postPizzeria);
 
+const swaggerOptions = {  
+    swaggerDefinition: {  
+        info: {  
+            title:'Pizza Mia API',  
+            version:'1.0.0'  
+        }  
+    },  
+    apis:['server.js'],  
+}  
+const swaggerDocs = swaggerJSDoc(swaggerOptions);  
+app.use('/api-docs',swaggerUI.serve,swaggerUI.setup(swaggerDocs));
 
 
 
