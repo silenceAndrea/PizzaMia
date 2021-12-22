@@ -177,11 +177,11 @@
 
                             <div class="container">
                                 <% ingredients.forEach(ingredient=> { %>
-                                    <label class="option_item">
+                                    <label class="option_item text-center">
                                         <input type="checkbox" class="checkbox" name="ingredient"
                                             value="<%= ingredient.value %>" id="<%= ingredient._id %>"
                                             onclick="show(this.id)">
-                                        <div class="option_inner" for="<%= ingredient._id %>">
+                                        <div class="option_inner text-center" for="<%= ingredient._id %>">
                                             <img src="<%= ingredient.value %>.png" class="img-fluid" style="max-height: 150%;">
                                             <%= ingredient.value %></img>
 
