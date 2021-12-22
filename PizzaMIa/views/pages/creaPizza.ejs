@@ -98,6 +98,7 @@
         .option_item .option_inner .tickmark {
         border-color: #3b5999 transparent transparent #3b5999;
         }
+        .img-fluid { border-radius: 50% }
         </style>
 </head>
 
@@ -181,7 +182,7 @@
                                             value="<%= ingredient.value %>" id="<%= ingredient._id %>"
                                             onclick="show(this.id)">
                                         <div class="option_inner" for="<%= ingredient._id %>">
-                                            <img src="<%= ingredient.value %>.png" class="img-fluid">
+                                            <img src="<%= ingredient.value %>.png" class="img-fluid" style="max-height: 150%;">
                                             <%= ingredient.value %></img>
 
                                                 <div class="tickmark"></div>
