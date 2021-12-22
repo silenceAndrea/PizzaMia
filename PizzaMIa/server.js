@@ -88,20 +88,8 @@ app.get('/api/farina', (request, response) => {
 })
 
 // cercaPizzeria page
-async function getPizzeria(req, res) {
-    var ricerca ="";
-    const pizzerie = await Pizzeria.find({});
-    console.log(pizzerie);
-    res.render('pages/cercaPizzeria', { pizzerie ,ricerca});
 
-}
-async function postPizzeria(req, res) {
 
-    var ricerca = req.body.ricerca;
-    const pizzerie = await Pizzeria.find({ $or: [ {city:{$regex:ricerca, $options : 'i'}},{name:{$regex:ricerca, $options : 'i'}},{state:{$regex:ricerca, $options : 'i'}},{address:{$regex:ricerca, $options :'i'}}]});
-    console.log(pizzerie);
-    res.render('pages/cercaPizzeria', { pizzerie ,ricerca});
-}
 /**
  * @swagger
  * /cercaPizzeria:
@@ -111,24 +99,21 @@ async function postPizzeria(req, res) {
  *       200:
  *         description: success
  */
-app.route('/cercaPizzeria').get(getPizzeria);
-/** 
- * @swagger 
- * /cercaPizzeria: 
- *   post: 
- *     description: ricerca pizzerie in base da una stringa
- *     parameters: 
- *     - name: researchBar 
- *       description: Ricerca pizzeria e rendering della pagina
- *       in: formData 
- *       required: true 
- *       type: String 
- *     responses:  
- *       201: 
- *         description: page rendered  
- *   
- */  
-app.route('/cercaPizzeria').post(postPizzeria);
+app.get('/cercaPizzeria',async function (req, res) {
+    var ricerca ="";
+    const pizzerie = await Pizzeria.find({});
+    console.log(pizzerie);
+    res.render('pages/cercaPizzeria', { pizzerie ,ricerca});
+
+});
+
+app.post('/cercaPizzeria', async function (req, res) {
+
+    var ricerca = req.body.ricerca;
+    const pizzerie = await Pizzeria.find({ $or: [ {city:{$regex:ricerca, $options : 'i'}},{name:{$regex:ricerca, $options : 'i'}},{state:{$regex:ricerca, $options : 'i'}},{address:{$regex:ricerca, $options :'i'}}]});
+    console.log(pizzerie);
+    res.render('pages/cercaPizzeria', { pizzerie ,ricerca});
+});
 
 const swaggerOptions = {  
     swaggerDefinition: {  
