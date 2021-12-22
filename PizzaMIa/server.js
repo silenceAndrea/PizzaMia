@@ -110,7 +110,10 @@ app.get('/cercaPizzeria',async function (req, res) {
 app.post('/cercaPizzeria', async function (req, res) {
 
     var ricerca = req.body.ricerca;
-    const pizzerie = await Pizzeria.find({ $or: [ {city:{$regex:ricerca, $options : 'i'}},{name:{$regex:ricerca, $options : 'i'}},{state:{$regex:ricerca, $options : 'i'}},{address:{$regex:ricerca, $options :'i'}}]});
+    const pizzerie = await Pizzeria.find({ $or: [ {city:{$regex:ricerca, $options : 'i'}},
+    {name:{$regex:ricerca, $options : 'i'}},
+    {state:{$regex:ricerca, $options : 'i'}},
+    {address:{$regex:ricerca, $options :'i'}}]});
     console.log(pizzerie);
     res.render('pages/cercaPizzeria', { pizzerie ,ricerca});
 });
