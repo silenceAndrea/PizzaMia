@@ -5,7 +5,7 @@ Aprire un terminale sulla cartella del progetto (PizzaMIa) e scrivere "node serv
 Aprire un terminale sulla cartella del progetto e scrivere "npm run test".
 
 	LINK ALLA CARTELLA GITHUB
-https://github.com/silenceAndrea/PizzaMia
+https://github.com/silenceAndrea/PizzaMia/tree/master/PizzaMIa
 
 	PERSONE CHE HANNO CONTRIBUITO AL PROGETTO
 Lorenzo Pantaleo
